@@ -1,0 +1,11 @@
+{
+  "name": "temp-device-simulator",
+  "version": "1.0.0",
+  "description": "app to simulate devices sending data",
+  "main": "app.js",
+  "author": "Wechuli",
+  "license": "MIT",
+  "dependencies": {
+    "axios": "^0.18.0"
+  }
+}
