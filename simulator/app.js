@@ -13,17 +13,15 @@ function dummyDevice() {
   const randomHumi =
     Math.floor(Math.random() * (MAXIMUM_HUMIDITY - MINIMUM_HUMIDITY + 1)) +
     MINIMUM_HUMIDITY;
-  //   console.log("Strange stuff");
 
-  console.log(`Temp: ${randomTemp} Humidity: ${randomHumi}`);
-
-  // axios
-  //   .post("http://un-habitat-backend.azurewebsites.net", {
-  //     temp: randomTemp,
-  //     humidity: randomHumi
-  //   })
-  //   .then(response => console.log(response.data))
-  //   .catch(error => console.log(error));
+  axios
+    .post("http://localhost:8060/api/telemetry/create", {
+      device: "device1",
+      temprature: randomTemp,
+      humidity: randomHumi
+    })
+    .then(response => console.log(response.data))
+    .catch(error => console.log(error));
 }
 
 setInterval(() => {

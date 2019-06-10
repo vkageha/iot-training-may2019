@@ -8,15 +8,16 @@
 
 //The try and catch statements just provide a graceful way to handle errors occuring inside the function
 
-
+const Telemetry = require("../models/Telemetry.model");
 
 module.exports = {
   //get all telemetry
   async getAllTelemetry(req, res) {
-    
     try {
-
-      res.status(200).json({ message: "All telemetry for a device" });
+      const allTelemetry = await Telemetry.find({});
+      res
+        .status(200)
+        .json({ message: "All telemetry for a device", allTelemetry });
     } catch (error) {
       res.status(500).json({ error });
     }
@@ -24,8 +25,19 @@ module.exports = {
 
   // create new data point
   async createTelemetry(req, res) {
+    const telemetryBody = {
+      name: "Test",
+      temprature: 24,
+      humidity: 50,
+      sensor_id: "ttthh"
+    };
     try {
-      res.status(201).json({ message: "New Telemetry created" });
+      const newTelemetry = new Telemetry(telemetryBody);
+      await newTelemetry.save();
+
+      res
+        .status(201)
+        .json({ message: "New Telemetry created", newTelemetry: newTelemetry });
     } catch (error) {
       res.status(500).json({ error });
     }

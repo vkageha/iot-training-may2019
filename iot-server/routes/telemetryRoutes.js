@@ -19,6 +19,6 @@ router.get("/:deviceId", getAllTelemetry);
 
 // store a dataset for a particular telemtery - must include the deviceId - you may notice that this route is exaclty equivalent to the get route with the difference of the HTTP method - this is now a POST rather than a get , they have different handler functions
 
-router.post("/:deviceId", createTelemetry);
+router.get("/create/:deviceId", createTelemetry);
 
 module.exports = router;
